@@ -1,0 +1,11 @@
+package com.myspace.sampleproject;
+
+rule "Medicaid Rules"
+    ruleflow-group "medicaid"
+    when
+        txn : Transaction( lob == "Medicaid")
+        
+    then
+		txn.setMessage(txn.getMessage() + " Medicaid Rules apply ");
+        update(txn);			
+end

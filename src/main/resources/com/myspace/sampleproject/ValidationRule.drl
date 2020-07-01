@@ -1,0 +1,21 @@
+package com.myspace.sampleproject;
+
+rule "Validate lob"
+    ruleflow-group "validate"
+    when
+        txn : Transaction( lob == null || lob.isEmpty())
+        
+    then
+		txn.setMessage("lob is null");
+        update(txn);			
+end
+
+rule "Validate memberId"
+    ruleflow-group "validate"
+    when
+        txn : Transaction( memberId == null || memberId.isEmpty())
+        
+    then
+		txn.setMessage(txn.getMessage()+" Member Id is null ");
+        update(txn);			
+end
